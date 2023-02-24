@@ -1,0 +1,93 @@
+import React, { Component, useRef, useState, useEffect } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  SafeAreaView,
+  Image,
+  TouchableOpacity,
+  TouchableHighlight,
+  ScrollView,
+} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import Bg from '../../assets/space.jpg';
+
+import { AppBar } from '@react-native-material/core';
+import Responsive from '../../Helper/Responsive';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCheckSquare, faHomeAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import Earth from '../../assets/earth.png';
+
+
+
+export default function EarthPage({ navigation }) {
+  const [data, setData] = useState({ description: '', planet: '',  });
+  const mainsc = () => {
+    navigation.navigate('Main');
+  };
+
+  const getApiData = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/api/universe/6');
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await getApiData();
+      setData(result);
+    };
+
+    fetchData();
+  }, []);
+
+  return(
+    <SafeAreaView>
+      <Image style={stylesheet.styleBackground} source={Bg}></Image>
+      <TouchableOpacity onPress={mainsc}>
+        <FontAwesomeIcon icon={faHomeAlt} color="white" style={stylesheet.homeicon} size={40}/>
+
+      <View style={stylesheet.bumi}>
+        <TouchableHighlight>
+          <Image style={stylesheet.earth} source={Earth} />
+        </TouchableHighlight>
+      </View>
+      </TouchableOpacity>
+    </SafeAreaView>
+  );
+}
+
+const stylesheet = StyleSheet.create({
+  earth: {
+    position: 'absolute',
+    left: Responsive.horizontal(30),
+    top: Responsive.horizontal(-270),
+
+    width: 270,
+    height: 270,
+  },
+  bumi: {
+    position: 'absolute',
+    left: 22,
+    top: 532,
+    width: 250,
+    height: 250,
+  },
+  homeicon: {
+    position: 'absolute',
+    left: Responsive.horizontal(320),
+    top: Responsive.horizontal(90),
+    width: 180,
+  },
+  styleBackground: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    borderRadius: null,
+    width: 430,
+  },
+})
