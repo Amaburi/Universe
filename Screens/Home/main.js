@@ -31,10 +31,10 @@ export default function Main({ navigation }) {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/api/universe')
+      .get('http://192.168.100.103:5000/api/universe')
       .then(function (response) {
-        console.log('success', response.data.data[0].Planet)
-        setData(response.data.data[0])
+        console.log('success', response.data)
+        setData(response.data)
       })
       .catch(function (error) {
         console.log('error', error.response);
@@ -83,7 +83,9 @@ export default function Main({ navigation }) {
       </View>
 
       <View style={stylesheet.bumi}>
-        <Plnt />
+        <TouchableOpacity onPress={earth}>
+          <Image style={stylesheet.earth} source={Earth} />
+        </TouchableOpacity>
       </View>
 
       <View>

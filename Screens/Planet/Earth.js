@@ -19,49 +19,63 @@ import { faCheckSquare, faHomeAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import Earth from '../../assets/earth.png';
 
-
+import axios from 'axios';
 
 export default function EarthPage({ navigation }) {
-  const [data, setData] = useState({ description: '', planet: '',  });
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    axios
+      .get('http://192.168.20.49:5000/api/universe')
+      .then(function (response) {
+        console.log('success', response.data.data[0].Planet)
+        setData(response.data.data[0])
+      })
+      .catch(function (error) {
+        console.log('error', error.response);
+      })
+  }, []);
   const mainsc = () => {
     navigation.navigate('Main');
   };
 
-  const getApiData = async () => {
-    try {
-      const response = await axios.get('http://localhost:5000/api/universe/6');
-      return response.data;
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await getApiData();
-      setData(result);
-    };
-
-    fetchData();
-  }, []);
 
   return(
     <SafeAreaView>
       <Image style={stylesheet.styleBackground} source={Bg}></Image>
       <TouchableOpacity onPress={mainsc}>
         <FontAwesomeIcon icon={faHomeAlt} color="white" style={stylesheet.homeicon} size={40}/>
+      </TouchableOpacity>
+      <Text style={stylesheet.txtPlanet}>{data?.Planet}</Text>
 
       <View style={stylesheet.bumi}>
         <TouchableHighlight>
           <Image style={stylesheet.earth} source={Earth} />
         </TouchableHighlight>
       </View>
-      </TouchableOpacity>
+      
+      <Text style={stylesheet.txtDesc}>{data?.description}</Text>
+      
     </SafeAreaView>
   );
 }
 
 const stylesheet = StyleSheet.create({
+  txtPlanet:{
+    position: 'absolute',
+    top: 210,
+    left: 160,
+    fontSize: 30,
+    color: 'white'
+  },
+  txtDesc:{
+    position: 'absolute',
+    top: 510,
+    left: 15,
+    fontSize: 14,
+    color: 'white'
+  },
   earth: {
     position: 'absolute',
     left: Responsive.horizontal(30),

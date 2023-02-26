@@ -7,6 +7,7 @@ import { AppBar } from "@react-native-material/core";
 import RoundButton from "../../components/button/btn";
 import MusicButton from "../../components/MusicBtn/Music";
 
+import Sound from 'react-native-sound';
 
 
 
@@ -23,14 +24,10 @@ import FontAwesome, {
   parseIconFromClassName,
 } from 'react-native-fontawesome';
 const Index = ({navigation}) => {
-  const [sound, setSound] = useState();
+  const [sound, setSound] = useState(null);
 
-  async function getPermission() {
-    const { status } = await Audio.requestPermissionsAsync();
-    if (status !== 'granted') {
-    alert('We need permission to play audio!');
-    }
-  }
+
+
   const playSound = async () => {
     const { status } = await Audio.requestPermissionsAsync();
     if (status !== 'granted') {

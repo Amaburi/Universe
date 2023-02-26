@@ -1,4 +1,4 @@
-import React, { Component, useRef } from 'react';
+import React, { Component, useRef,useState,useEffect } from 'react';
 import {
   View,
   Text,
@@ -12,13 +12,29 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import Bg from '../../assets/space.jpg';
 
-import { AppBar } from '@react-native-material/core';
 import Responsive from '../../Helper/Responsive';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCheckSquare, faHomeAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
+import Mercury from '../../assets/mercury.png';
+import axios from 'axios';
+
 export default function MercuryPage({ navigation }) {
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    axios
+      .get('http://192.168.20.49:5000/api/universe')
+      .then(function (response) {
+        console.log('success', response.data.data[3].Planet)
+        setData(response.data.data[3])
+      })
+      .catch(function (error) {
+        console.log('error', error.response);
+      })
+  }, []);
+
   const mainsc = () => {
     navigation.navigate('Main');
   };
@@ -29,11 +45,49 @@ export default function MercuryPage({ navigation }) {
       <TouchableOpacity onPress={mainsc}>
         <FontAwesomeIcon icon={faHomeAlt} color="white" style={stylesheet.homeicon} size={40}/>
       </TouchableOpacity>
+      <Text style={stylesheet.txtPlanet}>{data?.Planet}</Text>
+
+      <View style={stylesheet.plnt}>
+        <TouchableHighlight>
+          <Image style={stylesheet.mercury} source={Mercury} />
+        </TouchableHighlight>
+      </View>
+
+      <Text style={stylesheet.txtDesc}>{data?.description}</Text>
     </SafeAreaView>
   );
 }
 
 const stylesheet = StyleSheet.create({
+  txtPlanet:{
+    position: 'absolute',
+    top: 210,
+    left: 130,
+    fontSize: 30,
+    color: 'white'
+  },
+  mercury: {
+    position: 'absolute',
+    left: Responsive.horizontal(30),
+    top: Responsive.horizontal(-270),
+
+    width: 250,
+    height: 250,
+  },
+  plnt: {
+    position: 'absolute',
+    left: 22,
+    top: 532,
+    width: 250,
+    height: 250,
+  },
+  txtDesc:{
+    position: 'absolute',
+    top: 510,
+    left: 10,
+    fontSize: 14,
+    color: 'white'
+  },
   homeicon: {
     position: 'absolute',
     left: Responsive.horizontal(320),

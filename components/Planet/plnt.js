@@ -6,8 +6,8 @@ const Plnt = (props) => {
   const {source, onPress, style } = props;
 
   return (
-    <TouchableOpacity style={[styles.Planet, style]} onPress={onPress}>
-      <Image source={source}/>
+    <TouchableOpacity onPress={onPress}>
+      <Image source={source} style={[styles.Planet, style]}/>
     </TouchableOpacity>
   );
 };
