@@ -19,6 +19,7 @@ import UranusPage from '../Screens/Planet/Uranus';
 import NeptunePage from '../Screens/Planet/Neptune';
 import AboutUsScreen from '../Screens/AboutUs/About';
 import QuizScreen from '../Screens/Quiz/index';
+import Level1 from '../Screens/Quiz/level1';
 import Tmplt from '../components/Planet/tmplt';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -28,7 +29,7 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-      initialRouteName="Quizindex"
+      initialRouteName="Home"
       screenOptions={{ headerShown: false, animationEnabled: false }}>        
         <Stack.Screen name="Home" component={Index} />
         <Stack.Screen name="Main" component={Main} />
@@ -43,6 +44,7 @@ const Navigation = () => {
         <Stack.Screen name="Uranus" component={UranusPage} />
         <Stack.Screen name="Neptune" component={NeptunePage} />
         <Stack.Screen name="Quizindex" component={QuizScreen} />
+        <Stack.Screen name="lvl1" component={Level1} />
       </Stack.Navigator>
     </NavigationContainer>
 

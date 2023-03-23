@@ -21,12 +21,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import QuizBtn from '../../components/button/quiz';
 import LoveShape from '../../components/Love/love';
 
-export default function QuizScreen({ navigation }) {
+
+
+export default function Level1({ navigation }) {
   const mainsc = () => {
     navigation.navigate('Main');
-  };
-  const lvl1 = () => {
-    navigation.navigate('lvl1');
   };
 
   return(
@@ -34,10 +33,6 @@ export default function QuizScreen({ navigation }) {
       <Image style= {styles.styleBackground} source={Bg}></Image>
 
       <View>
-        <QuizBtn title="Level 1" onPress={lvl1} style={{left: 80, top: 280}} />
-        <QuizBtn title="Level 2" onPress={mainsc} style={{left: 80, top: 360}} />
-        <QuizBtn title="Level 3" onPress={mainsc} style={{left: 80, top: 450}} />
-      
         
       </View>
     </SafeAreaView>

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import {View, Text,StyleSheet,SafeAreaView,Image,Button, ImageBackground} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
@@ -23,11 +24,15 @@ import FontAwesome, {
   BrandIcons,
   parseIconFromClassName,
 } from 'react-native-fontawesome';
+import audio from '../../assets/Space.mp3';
+
+
 const Index = ({navigation}) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   
-
+  
+  
   
   const homesc = () => {
     navigation.navigate('Main');
@@ -44,7 +49,7 @@ const Index = ({navigation}) => {
       </ImageBackground>
       <RoundButton title="PLAY" onPress={homesc} style={{left: 140, top: 20}} />
       
-      <MusicButton iconName="caretright" onPress={handlePlayMusic} style={{left: 140, top: 37}}/>
+      <MusicButton iconName="caretright" onPress={aboutsc} style={{left: 140, top: 37}}/>
       <MusicButton iconName="infocirlce" onPress={aboutsc} style={{left: 200, top: -10}}/>
       
     </SafeAreaView>
