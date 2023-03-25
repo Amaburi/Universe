@@ -40,9 +40,6 @@ export default function EarthPage({ navigation }) {
     navigation.navigate('Main');
   };
   
-
-
-
   return(
     <SafeAreaView>
       <Image style={stylesheet.styleBackground} source={Bg}></Image>

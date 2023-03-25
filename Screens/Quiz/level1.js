@@ -1,4 +1,4 @@
-import React, { Component, useRef,useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -6,45 +6,85 @@ import {
   SafeAreaView,
   Image,
   TouchableOpacity,
-  TouchableHighlight,
   ScrollView,
+  Alert,
 } from 'react-native';
-
-import Bg from '../../assets/space.jpg';
-
+import axios from 'axios';
 
 import Responsive from '../../Helper/Responsive';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCheckSquare, faHomeAlt } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-// Custom Component
-import QuizBtn from '../../components/button/quiz';
-import LoveShape from '../../components/Love/love';
 
+import Bg from '../../assets/space.jpg';
+export default function Level1() {
+  const [data, setQuestions] = useState([]);
+    const [ques, setQues] = useState(0);
+    const getQuiz = async () => {
+        const url = 'http://192.168.100.103:5000/api/quizzes?levelId=1';
+        const res = await fetch(url);
+        const data = await res.json();
+        setQuestions(data.data);
+    }
+    useEffect(() => {
+        getQuiz()
+    }, []);
 
-
-export default function Level1({ navigation }) {
-  const mainsc = () => {
-    navigation.navigate('Main');
-  };
+  const handleNext=()=>{
+    setQues(ques+1)
+  }
+  const handleBack=()=>{
+    setQues(ques-1)
+  }
+  const currentQuestion = data[ques];
 
   return(
-    <SafeAreaView style={styles.root}>
-      <Image style= {styles.styleBackground} source={Bg}></Image>
+    
+      <View style={styles.container}>
+        {currentQuestion && (
+          <View style={styles.parent}>
+            <View style={styles.top}>
+              <Text style={styles.question}> Q.{decodeURIComponent(currentQuestion.quiz)}</Text>
+            </View>
 
-      <View>
-        
+            <View style={styles.options}>
+              <TouchableOpacity style={styles.optionBtn}>
+                <Text style={styles.optionTxt}>{currentQuestion.a}</Text>
+              </TouchableOpacity>  
+              <TouchableOpacity style={styles.optionBtn}>
+                <Text style={styles.optionTxt}>{currentQuestion.b}</Text>
+              </TouchableOpacity> 
+              <TouchableOpacity style={styles.optionBtn}>
+                <Text style={styles.optionTxt}>{currentQuestion.c}</Text>
+              </TouchableOpacity>  
+              <TouchableOpacity style={styles.optionBtn}>
+                <Text style={styles.optionTxt}>{currentQuestion.d}</Text>
+              </TouchableOpacity> 
+            </View>
+
+            <View style={styles.bottom}>
+              <TouchableOpacity style={styles.button} onPress={handleBack}>
+                <Text style={styles.buttonTxt}>BACK</Text>
+              </TouchableOpacity>  
+
+              {ques!==data.length - 1 && <TouchableOpacity style={styles.button} onPress={handleNext}>
+                <Text style={styles.buttonTxt}>NEXT</Text>
+              </TouchableOpacity>} 
+
+              {ques===data.length - 1 && <TouchableOpacity style={styles.button} onPress={()=>null}>
+                <Text style={styles.buttonTxt}>SHOW RESULTS</Text>
+              </TouchableOpacity>} 
+
+            </View>
+          </View>
+        )}
       </View>
-    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  homeicon: {
-    position: 'absolute',
-    left: Responsive.horizontal(320),
-    top: Responsive.horizontal(90),
-    width: 180,
+  kk:{
+    fontSize:50
+  },
+  root: {
+    flex: 1,
   },
   styleBackground: {
     position: 'absolute',
@@ -53,4 +93,52 @@ const styles = StyleSheet.create({
     borderRadius: null,
     width: 430,
   },
-})
+  container: {
+    paddingTop: 40,
+    paddingHorizontal:20,
+    height: '100%'
+  },
+  top:{
+    marginVertical: 16
+  },
+  options:{
+    marginVertical: 16,
+    flex: 1
+  },
+  bottom:{
+    marginBottom: 12,
+    paddingVertical: 16,
+    justifyContent: 'space-between',
+    flexDirection: 'row'
+  },
+  button:{
+    backgroundColor: '#DFDFDF',
+    padding: 16,
+    paddingHorizontal:16,
+    borderRadius: 16,
+    alignItems: 'center',
+    marginBottom: 30
+  },
+  buttonTxt:{
+    fontSize: 18,
+    fontWeight: '600',
+    color: 'black'
+  },
+  question:{
+    fontSize: 28,
+  },
+  optionTxt:{
+    fontSize: 18,
+    fontWeight: '500'
+  },
+  optionBtn:{
+    paddingVertical: 12,
+    marginVertical: 6,
+    backgroundColor: '#ffffff',
+    paddingHorizontal: 12,
+    borderRadius: 12
+  },
+  parent:{
+    height: '100%'
+  }
+});
