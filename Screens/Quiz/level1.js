@@ -14,7 +14,7 @@ import axios from 'axios';
 import Responsive from '../../Helper/Responsive';
 
 import Bg from '../../assets/space.jpg';
-export default function Level1() {
+export default function Level1({navigation}) {
   const [data, setQuestions] = useState([]);
     const [ques, setQues] = useState(0);
     const getQuiz = async () => {
@@ -33,11 +33,15 @@ export default function Level1() {
   const handleBack=()=>{
     setQues(ques-1)
   }
+  const quizsc = () => {
+    navigation.navigate('Quizindex');
+  };
   const currentQuestion = data[ques];
 
   return(
     
       <View style={styles.container}>
+        <Image style={styles.styleBackground} source={Bg}></Image>
         {currentQuestion && (
           <View style={styles.parent}>
             <View style={styles.top}>
@@ -60,10 +64,12 @@ export default function Level1() {
             </View>
 
             <View style={styles.bottom}>
-              <TouchableOpacity style={styles.button} onPress={handleBack}>
+              {ques!==0 &&<TouchableOpacity style={styles.button} onPress={handleBack}>
                 <Text style={styles.buttonTxt}>BACK</Text>
-              </TouchableOpacity>  
-
+              </TouchableOpacity>}  
+              {ques==0 &&<TouchableOpacity style={styles.button} onPress={quizsc}>
+                <Text style={styles.buttonTxt}>HOME</Text>
+              </TouchableOpacity>}
               {ques!==data.length - 1 && <TouchableOpacity style={styles.button} onPress={handleNext}>
                 <Text style={styles.buttonTxt}>NEXT</Text>
               </TouchableOpacity>} 
@@ -80,6 +86,13 @@ export default function Level1() {
 }
 
 const styles = StyleSheet.create({
+  styleBackground: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    borderRadius: null,
+    width: 430,
+  },
   kk:{
     fontSize:50
   },
@@ -126,6 +139,7 @@ const styles = StyleSheet.create({
   },
   question:{
     fontSize: 28,
+    color: 'white'
   },
   optionTxt:{
     fontSize: 18,
