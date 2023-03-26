@@ -15,17 +15,20 @@ import Responsive from '../../Helper/Responsive';
 
 import Bg from '../../assets/space.jpg';
 export default function Level1({navigation}) {
-  const [data, setQuestions] = useState([]);
+    const [data, setQuestions] = useState([]);
     const [ques, setQues] = useState(0);
+    const [options, setOptions] = useState([]);
     const getQuiz = async () => {
         const url = 'http://192.168.100.103:5000/api/quizzes?levelId=1';
         const res = await fetch(url);
         const data = await res.json();
         setQuestions(data.data);
+        setOptions(generateOptionsAndShuffle(data.data));
     }
     useEffect(() => {
         getQuiz()
     }, []);
+
 
   const handleNext=()=>{
     setQues(ques+1)
@@ -33,6 +36,34 @@ export default function Level1({navigation}) {
   const handleBack=()=>{
     setQues(ques-1)
   }
+  const generateOptionsAndShuffle = (_question) => {
+    const options = [_question.a, _question.b, _question.c, _question.d];
+    const correctIndex = ['a', 'b', 'c', 'd'].indexOf(_question.key);
+    options.push(correctIndex);
+    shuffleArray(options);
+    return options;
+  };
+  
+  
+  const shuffleArray=(array)=>{
+    for(let i = array.length -1; i>0; i--){
+      const j = Math.floor(Math.random() * (i+1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+  
+  const handleSelectedOption = (selectedOption) => {
+    if (selectedOption === currentQuestion.key) {
+      console.log("Correct answer!");
+      // handle correct answer logic here
+    } else {
+      console.log("Wrong answer!");
+      // handle wrong answer logic here
+    }
+  }
+
+
+
   const quizsc = () => {
     navigation.navigate('Quizindex');
   };
@@ -49,16 +80,16 @@ export default function Level1({navigation}) {
             </View>
 
             <View style={styles.options}>
-              <TouchableOpacity style={styles.optionBtn}>
+              <TouchableOpacity style={styles.optionBtn} onPress={() => handleSelectedOption('a')}>
                 <Text style={styles.optionTxt}>{currentQuestion.a}</Text>
-              </TouchableOpacity>  
-              <TouchableOpacity style={styles.optionBtn}>
+              </TouchableOpacity>   
+              <TouchableOpacity style={styles.optionBtn} onPress={() => handleSelectedOption('b')}>
                 <Text style={styles.optionTxt}>{currentQuestion.b}</Text>
               </TouchableOpacity> 
-              <TouchableOpacity style={styles.optionBtn}>
+              <TouchableOpacity style={styles.optionBtn} onPress={() => handleSelectedOption('c')}>
                 <Text style={styles.optionTxt}>{currentQuestion.c}</Text>
               </TouchableOpacity>  
-              <TouchableOpacity style={styles.optionBtn}>
+              <TouchableOpacity style={styles.optionBtn} onPress={() => handleSelectedOption('d')}>
                 <Text style={styles.optionTxt}>{currentQuestion.d}</Text>
               </TouchableOpacity> 
             </View>
