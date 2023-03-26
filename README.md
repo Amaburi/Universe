@@ -1,3 +1,5 @@
 Made By Jy
 
-0_0
+Application that about universe and there's a quiz about it 
+
+created in React Native
