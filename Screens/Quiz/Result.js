@@ -21,29 +21,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import QuizBtn from '../../components/button/quiz';
 import LoveShape from '../../components/Love/love';
 
-export default function QuizScreen({ navigation }) {
+export default function ResultScreen({ navigation, route }) {
+  
+    const score = route.params.score;
+    console.log(score);
+
   const mainsc = () => {
     navigation.navigate('Main');
   };
-  const lvl1 = () => {
-    navigation.navigate('lvl1');
-  };
-  const lvl2 = () => {
-    navigation.navigate('lvl2');
-  };
-
   return(
-    <SafeAreaView style={styles.root}>
-      <Image style= {styles.styleBackground} source={Bg}></Image>
-
-      <View>
-        <QuizBtn title="Level 1" onPress={lvl1} style={{left: 80, top: 280}} />
-        <QuizBtn title="Level 2" onPress={lvl2} style={{left: 80, top: 360}} />
-        <QuizBtn title="Level 3" onPress={mainsc} style={{left: 80, top: 450}} />
-      
+    <View>
+        <Image style={styles.styleBackground} source={Bg}></Image>
+        <Text style={styles.scoreBtn}>Your Score:  {score}</Text>
         
-      </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -61,4 +52,8 @@ const styles = StyleSheet.create({
     borderRadius: null,
     width: 430,
   },
+  scoreBtn:{
+    fontSize:40,
+    color:'white'
+  }
 })

@@ -14,14 +14,15 @@ import axios from 'axios';
 import Responsive from '../../Helper/Responsive';
 
 import Bg from '../../assets/space.jpg';
-export default function Level1({navigation}) {
+
+export default function Level2({navigation}) {
     const [data, setQuestions] = useState([]);
     const [ques, setQues] = useState(0);
     const [options, setOptions] = useState([]);
     const [score,setScore] = useState(0);
 
     const getQuiz = async () => {
-      const levelId = 1; // Change this to the desired levelId
+      const levelId = 2; // Change this to the desired levelId
       const url = `http://192.168.100.103:5000/api/quizzes?levelId=${levelId}`;
       const res = await fetch(url);
       const data = await res.json();
