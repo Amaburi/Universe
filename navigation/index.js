@@ -31,7 +31,7 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-      initialRouteName="Quizindex"
+      initialRouteName="Home"
       screenOptions={{ headerShown: false, animationEnabled: false }}>        
         <Stack.Screen name="Home" component={Index} />
         <Stack.Screen name="Main" component={Main} />
