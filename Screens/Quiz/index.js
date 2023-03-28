@@ -20,7 +20,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 // Custom Component
 import QuizBtn from '../../components/button/quiz';
 import LoveShape from '../../components/Love/love';
-
+import { FontAwesome } from '@expo/vector-icons';
 export default function QuizScreen({ navigation }) {
   const mainsc = () => {
     navigation.navigate('Main');
@@ -37,6 +37,10 @@ export default function QuizScreen({ navigation }) {
       <Image style= {styles.styleBackground} source={Bg}></Image>
 
       <View>
+
+        <TouchableOpacity onPress={mainsc}>
+          <FontAwesome name="home" size={40} color="white" style={styles.homeicon}/>
+        </TouchableOpacity>
         <QuizBtn title="Level 1" onPress={lvl1} style={{left: 80, top: 280}} />
         <QuizBtn title="Level 2" onPress={lvl2} style={{left: 80, top: 360}} />
         <QuizBtn title="Level 3" onPress={mainsc} style={{left: 80, top: 450}} />
@@ -60,5 +64,10 @@ const styles = StyleSheet.create({
     top: 0,
     borderRadius: null,
     width: 430,
+  },
+  homeicon:{
+    position: 'absolute',
+    left: 330,
+    top: 120
   },
 })

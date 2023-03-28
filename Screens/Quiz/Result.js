@@ -9,9 +9,14 @@ import {
   TouchableHighlight,
   ScrollView,
 } from 'react-native';
-
+import { AppLoading } from 'expo';
 import Bg from '../../assets/space.jpg';
-
+import * as Font from 'expo-font';
+async function loadFonts() {
+  await Font.loadAsync({
+    'times-roman': require('../../assets/fonts/Poppins-Regular.ttf'),
+  });
+}
 
 import Responsive from '../../Helper/Responsive';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -20,19 +25,24 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 // Custom Component
 import QuizBtn from '../../components/button/quiz';
 import LoveShape from '../../components/Love/love';
+import Rectangle from '../../components/rectangle/rectangle';
 
 export default function ResultScreen({ navigation, route }) {
-  
+   
     const score = route.params.score;
     console.log(score);
 
-  const mainsc = () => {
-    navigation.navigate('Main');
+  const quizsc = () => {
+    navigation.navigate('Quizindex');
   };
+  
   return(
     <View>
         <Image style={styles.styleBackground} source={Bg}></Image>
+        <Text style={styles.txtt}>Congrats!! For Completing the Quiz!!</Text>
         <Text style={styles.scoreBtn}>Your Score:  {score}</Text>
+
+        <Rectangle title="Ready?" onPress={quizsc} style={{top: 300, left:30}}/>
         
     </View>
   );
@@ -52,8 +62,20 @@ const styles = StyleSheet.create({
     borderRadius: null,
     width: 430,
   },
+  txtt:{
+    position: 'absolute',
+    top:100,
+    left:10,
+    fontSize:25,
+    color:'white',
+    fontFamily: 'monospace',
+  },
   scoreBtn:{
-    fontSize:40,
-    color:'white'
+    position: 'absolute',
+    top:200,
+    left:10,
+    fontSize:25,
+    color:'white',
+    fontFamily: 'monospace',
   }
 })
