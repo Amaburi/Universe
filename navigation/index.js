@@ -22,6 +22,7 @@ import QuizScreen from '../Screens/Quiz/index';
 import Level1 from '../Screens/Quiz/level1';
 import ResultScreen from '../Screens/Quiz/Result';
 import Level2 from '../Screens/Quiz/level2';
+import Level3 from '../Screens/Quiz/Level3';
 import Tmplt from '../components/Planet/tmplt';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -48,6 +49,7 @@ const Navigation = () => {
         <Stack.Screen name="Quizindex" component={QuizScreen} />
         <Stack.Screen name="lvl1" component={Level1} />
         <Stack.Screen name="lvl2" component={Level2} />
+        <Stack.Screen name="lvl3" component={Level3} />
         <Stack.Screen name="Result" component={ResultScreen} />
       </Stack.Navigator>
     </NavigationContainer>
