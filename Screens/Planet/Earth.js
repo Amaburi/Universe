@@ -26,7 +26,7 @@ export default function EarthPage({ navigation }) {
 
   useEffect(() => {
     axios
-      .get('http://192.168.100.103:5000/api/universe')
+      .get('http://192.168.194.19:5000/api/universe')
       .then(function (response) {
         console.log('success', response.data.data[0].Planet)
         setData(response.data.data[0])

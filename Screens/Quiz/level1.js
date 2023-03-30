@@ -81,9 +81,10 @@ export default function Level1({navigation}) {
         <Image style={styles.styleBackground} source={Bg}></Image>
         {currentQuestion && (
           <View style={styles.parent}>
-            <View style={styles.top}>
-              <Text style={styles.question}> Q.{decodeURIComponent(currentQuestion.quiz)}</Text>
+            <View style={[styles.top, !isAnswerCorrect && styles.hidden]}>
+              <Text style={styles.question}>Q.{decodeURIComponent(currentQuestion.quiz)}</Text>
             </View>
+
             {isAnswerCorrect ? (
               <View style={styles.options}>
                 <TouchableOpacity style={styles.optionBtn} onPress={() => handleSelectedOption('a')}>
@@ -195,5 +196,8 @@ const styles = StyleSheet.create({
   },
   parent:{
     height: '100%'
-  }
+  },
+  hidden: {
+    display: 'none',
+  },
 });
