@@ -31,6 +31,9 @@ export default function QuizScreen({ navigation }) {
   const lvl2 = () => {
     navigation.navigate('lvl2');
   };
+  const lvl3 = () => {
+    navigation.navigate('lvl3');
+  };
 
   return(
     <SafeAreaView style={styles.root}>
@@ -43,7 +46,7 @@ export default function QuizScreen({ navigation }) {
         </TouchableOpacity>
         <QuizBtn title="Level 1" onPress={lvl1} style={{left: 80, top: 280}} />
         <QuizBtn title="Level 2" onPress={lvl2} style={{left: 80, top: 360}} />
-        <QuizBtn title="Level 3" onPress={mainsc} style={{left: 80, top: 450}} />
+        <QuizBtn title="Level 3" onPress={lvl3} style={{left: 80, top: 450}} />
       
         
       </View>
