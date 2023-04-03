@@ -5,7 +5,7 @@ const WrongScreen = ({title, onPress}) => {
   return (
     <View style={{ flex: 1, backgroundColor: 'transparent' }}>
       <View style={{ flex: 1, margin: 20 }}>
-        <Text style={styles.txt}>You Got it Wrong!!!</Text>
+        <Text style={styles.txt}>You Got it Wrong!!!!</Text>
         <TouchableOpacity style={styles.button} onPress={onPress}>
           <Text style={styles.ready}>{title}</Text>
         </TouchableOpacity>
