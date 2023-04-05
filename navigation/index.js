@@ -23,7 +23,7 @@ import Level1 from '../Screens/Quiz/level1';
 import ResultScreen from '../Screens/Quiz/Result';
 import Level2 from '../Screens/Quiz/level2';
 import Level3 from '../Screens/Quiz/Level3';
-import Tmplt from '../components/Planet/tmplt';
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 

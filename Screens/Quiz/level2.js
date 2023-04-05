@@ -20,7 +20,10 @@ export default function Level2({navigation}) {
     const [options, setOptions] = useState([]);
     const [score,setScore] = useState(0);
     const [isAnswerCorrect, setIsAnswerCorrect] = useState(true);
+    
 
+    const [quizFinished2, setQuizFinished2] = useState(false);
+    
     const getQuiz = async () => {
       const levelId = 2; // Change this to the desired levelId
       const url = `http://192.168.194.19:5000/api/quizzes?levelId=${levelId}`;
@@ -32,8 +35,14 @@ export default function Level2({navigation}) {
     };
 
     useEffect(() => {
-        getQuiz()
-    }, []);
+      getQuiz();
+      if (quizFinished2) {
+        navigation.navigate('Result', {
+          score: score,
+          quizFinished2: quizFinished2,
+        });
+      }
+    }, [quizFinished2, navigation, score]);
 
 
   const handleNext=()=>{
@@ -68,9 +77,7 @@ export default function Level2({navigation}) {
     navigation.navigate('lvl1');
   };
   const result = () => {
-    navigation.navigate('Result',{
-      score: score
-    });
+    setQuizFinished2(true);
   };
 
   const currentQuestion = data[ques];

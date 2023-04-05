@@ -20,6 +20,7 @@ export default function Level3({navigation}) {
     const [options, setOptions] = useState([]);
     const [score,setScore] = useState(0);
     const [isAnswerCorrect, setIsAnswerCorrect] = useState(true);
+    const [quizFinished3, setQuizFinished3] = useState(false);
 
     const getQuiz = async () => {
       const levelId = 3; // Change this to the desired levelId
@@ -32,8 +33,14 @@ export default function Level3({navigation}) {
     };
 
     useEffect(() => {
-        getQuiz()
-    }, []);
+      getQuiz();
+      if (quizFinished3) {
+        navigation.navigate('Result', {
+          score: score,
+          quizFinished3: quizFinished3,
+        });
+      }
+    }, [quizFinished3, navigation, score]);
 
 
   const handleNext=()=>{
@@ -68,9 +75,7 @@ export default function Level3({navigation}) {
     navigation.navigate('lvl1');
   };
   const result = () => {
-    navigation.navigate('Result',{
-      score: score
-    });
+    setQuizFinished3(true);
   };
 
   const currentQuestion = data[ques];

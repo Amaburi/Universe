@@ -20,7 +20,7 @@ async function loadFonts() {
 
 import Responsive from '../../Helper/Responsive';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCheckSquare, faHomeAlt } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 // Custom Component
 import QuizBtn from '../../components/button/quiz';
@@ -28,13 +28,19 @@ import LoveShape from '../../components/Love/love';
 import Rectangle from '../../components/rectangle/rectangle';
 
 export default function ResultScreen({ navigation, route }) {
-   
+  
+    const quizFinished = route.params.quizFinished;
+    const quizFinished2 = route.params.quizFinished2;
+    const quizFinished3 = route.params.quizFinished3;
     const score = route.params.score;
     console.log(score);
 
-  const quizsc = () => {
-    navigation.navigate('Quizindex');
-  };
+    const quizsc = () => {
+      
+      navigation.navigate('Quizindex', { quizFinished: quizFinished, quizFinished2: quizFinished2, quizFinished3:quizFinished3 });
+
+    };
+    
   
   return(
     <View>

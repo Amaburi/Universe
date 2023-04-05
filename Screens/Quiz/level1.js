@@ -19,6 +19,10 @@ export default function Level1({navigation}) {
     const [ques, setQues] = useState(0);
     const [options, setOptions] = useState([]);
     const [score,setScore] = useState(0);
+    const [quizFinished, setQuizFinished] = useState(false);
+
+    
+
     const [isAnswerCorrect, setIsAnswerCorrect] = useState(true);
 
     const getQuiz = async () => {
@@ -32,9 +36,14 @@ export default function Level1({navigation}) {
     };
 
     useEffect(() => {
-        getQuiz()
-    }, []);
-
+      getQuiz();
+      if (quizFinished) {
+        navigation.navigate('Result', {
+          score: score,
+          quizFinished: quizFinished,
+        });
+      }
+    }, [quizFinished, navigation, score]);
 
   const handleNext=()=>{
     setQues(ques+1)
@@ -47,31 +56,28 @@ export default function Level1({navigation}) {
     if (selectedOption === currentQuestion.key) {
       setScore(score + 10);
       setIsAnswerCorrect(true);
-
+      
     } else {
       setIsAnswerCorrect(false);
+      
     }
     if (ques !== 9) {
       setQues(ques + 1);
     }
   }
-  
-  
-  
 
-
-
-  const quizsc = () => {
-    navigation.navigate('Quizindex');
-  };
   const lvl1sc = () => {
     navigation.navigate('lvl1');
   };
-  const result = () => {
-    navigation.navigate('Result',{
-      score: score
-    });
+  const quizsc = () => {
+    
+    navigation.navigate('Quizindex');
   };
+  
+  const result = () => {
+    setQuizFinished(true);
+  };
+
 
   const currentQuestion = data[ques];
 
