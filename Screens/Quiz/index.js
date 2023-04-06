@@ -64,30 +64,30 @@ export default function QuizScreen({ navigation, route }) {
         <FontAwesomeIcon
           icon={faHeart}
           size={50}
-          style={{ color: quizFinished ? 'red' : 'white', top: 440,left: 300 }}
+          style={{ color: quizFinished ? 'red' : 'white', top: 320,left: 300 }}
           
           
         />
         <FontAwesomeIcon
           icon={faHeart}
           size={50}
-          style={{ color: quizFinished2 ? 'red' : 'white', top: 470,left: 300 }}
+          style={{ color: quizFinished2 ? 'red' : 'white', top: 360,left: 300 }}
           
           
         />
         <FontAwesomeIcon
           icon={faHeart}
           size={50}
-          style={{ color: quizFinished3 ? 'red' : 'white', top: 510,left: 300 }}
+          style={{ color: quizFinished3 ? 'red' : 'white', top: 400,left: 300 }}
           
           
         />
         
-        <QuizBtn title="Level 1" onPress={lvl1} style={{left: 80, top: 280}} />
+        <QuizBtn title="Level 1" onPress={lvl1} style={{left: 80, top: 160}} />
         
-        <QuizBtn title="Level 2" onPress={lvl2} style={{left: 80, top: 360}} />
+        <QuizBtn title="Level 2" onPress={lvl2} style={{left: 80, top: 250}} />
         
-        <QuizBtn title="Level 3" onPress={lvl3} style={{left: 80, top: 450}} />
+        <QuizBtn title="Level 3" onPress={lvl3} style={{left: 80, top: 345}} />
       
         
       </View>
