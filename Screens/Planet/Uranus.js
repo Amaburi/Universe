@@ -25,7 +25,7 @@ export default function UranusPage({ navigation }) {
 
   useEffect(() => {
     axios
-      .get('http://192.168.100.103:5000/api/universe')
+      .get('http://yurekaa.my.id/api/universe')
       .then(function (response) {
         console.log('success', response.data.data[7].Planet)
         setData(response.data.data[7])
