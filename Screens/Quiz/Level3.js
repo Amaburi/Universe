@@ -24,7 +24,7 @@ export default function Level3({navigation}) {
 
     const getQuiz = async () => {
       const levelId = 3; // Change this to the desired levelId
-      const url = `http://192.168.194.19:5000/api/quizzes?levelId=${levelId}`;
+      const url = `http://yurekaa.my.id/api/quizzes?levelId=${levelId}`;
       const res = await fetch(url);
       const data = await res.json();
       const filteredData = data.data.filter(item => item.levelId === levelId);
