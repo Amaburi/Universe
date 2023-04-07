@@ -40,6 +40,9 @@ const Index = ({navigation}) => {
   const aboutsc = () => {
     navigation.navigate('About');
   };
+  const slideshowsc = () => {
+    navigation.navigate('slideshow');
+  };
 
   return (
     <SafeAreaView style={styles.root}>
@@ -49,7 +52,7 @@ const Index = ({navigation}) => {
       </ImageBackground>
       <RoundButton title="PLAY" onPress={homesc} style={{left: 140, top: 20}} />
       
-      <MusicButton iconName="caretright" onPress={aboutsc} style={{left: 140, top: 37}}/>
+      <MusicButton iconName="caretright" onPress={slideshowsc} style={{left: 140, top: 37}}/>
       <MusicButton iconName="infocirlce" onPress={aboutsc} style={{left: 200, top: -10}}/>
       
     </SafeAreaView>
