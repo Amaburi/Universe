@@ -25,7 +25,7 @@ export default function SunPage({ navigation }) {
 
   useEffect(() => {
     axios
-      .get('http://yurekaa.my.id/api/universe')
+      .get('https://yurekaa.my.id/api/universe')
       .then(function (response) {
         console.log('success', response.data.data[1].Planet)
         setData(response.data.data[1])
