@@ -4,7 +4,7 @@ import {View, Text,StyleSheet,SafeAreaView,Image,Button, ImageBackground} from '
 import {NavigationContainer} from '@react-navigation/native';
 import Tab from '../../navigation/tabs';
 import {useNavigation} from '@react-navigation/native';
-import { AppBar } from "@react-native-material/core";
+
 import RoundButton from "../../components/button/btn";
 import MusicButton from "../../components/MusicBtn/Music";
 

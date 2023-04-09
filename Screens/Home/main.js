@@ -22,7 +22,7 @@ import Uranus from '../../assets/uranus.png';
 import Neptune from '../../assets/Neptune.png';
 import Logo from '../../assets/logo.png';
 import { useNavigation } from '@react-navigation/native';
-import { AppBar } from '@react-native-material/core';
+
 import Responsive from '../../Helper/Responsive';
 
 import { FontAwesome } from '@expo/vector-icons';

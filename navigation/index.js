@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 
 
 
@@ -27,7 +27,7 @@ import Slideshow from '../Screens/slideshow/slideshow';
 
 
 const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
+
 
 
 const Navigation = () => {
@@ -60,14 +60,7 @@ const Navigation = () => {
     
   );
 };
-// export const TabNav = () => {
-//   return (
-//     <Tab.Navigator>
-//       <Tab.Screen name="Index" component={Index} />
-//       <Tab.Screen name="Settings" component={SettingsScreen} />
-//     </Tab.Navigator>
-//   );
-// }
+
 
 
 export default Navigation;

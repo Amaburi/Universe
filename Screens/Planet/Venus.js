@@ -13,7 +13,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Bg from '../../assets/space.jpg';
 
 import Responsive from '../../Helper/Responsive';
-import { library } from '@fortawesome/fontawesome-svg-core';
+
 import { faCheckSquare, faHomeAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 

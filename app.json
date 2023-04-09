@@ -24,11 +24,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.macncheese.snackd981c062a30c488a97f5bf5ef0b82832"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": "nyoba"
+    "description": "nyoba",
+    "extra": {
+      "eas": {
+        "projectId": "9d92fc86-4160-4206-86b4-b3154550299d"
+      }
+    }
   }
 }
